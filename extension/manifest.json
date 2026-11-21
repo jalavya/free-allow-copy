@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Free Allow Copy",
+  "version": "1.1.0",
+  "description": "Bring back text selection, right-click, copy, cut and paste on sites that block them. Free, no account. Made by jalavya.",
+  "minimum_chrome_version": "111",
+  "permissions": ["storage", "activeTab", "clipboardRead", "offscreen"],
+  "icons": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "action": {
+    "default_title": "Free Allow Copy by jalavya",
+    "default_popup": "popup.html",
+    "default_icon": { "16": "icons/16.png", "48": "icons/48.png" }
+  },
+  "background": { "service_worker": "background.js" },
+  "commands": {
+    "paste-text": {
+      "suggested_key": { "default": "Alt+Shift+V", "mac": "MacCtrl+Shift+V" },
+      "description": "Paste clipboard text into the focused field (works where Ctrl+V is blocked)"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["main.js"],
+      "world": "MAIN",
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["bridge.js"],
+      "css": ["style.css"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ]
+}

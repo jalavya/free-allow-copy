@@ -1,0 +1,13 @@
+/* Inert until bridge.js sets data-fac on <html>. :not(#_) raises specificity above most site rules. */
+html[data-fac],
+html[data-fac] *:not(#_),
+html[data-fac] *:not(#_)::before,
+html[data-fac] *:not(#_)::after {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  -webkit-touch-callout: default !important;
+}
+html[data-fac] *:not(#_)::selection {
+  background: rgba(58, 109, 240, 0.35) !important;
+  color: inherit !important;
+}
